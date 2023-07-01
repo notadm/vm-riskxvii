@@ -1,5 +1,5 @@
 # vm-riskxvii
-USYD_COMP2017 YEAR=2023 Assignment 2: vm-riskxvii
+USYD_COMP2017(2023) Assignment 2
 
 Compiling: ``` make vm ``` 
 
