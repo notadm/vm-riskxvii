@@ -1,8 +1,6 @@
 #include "vm.h"
 #include "kernel.h"
 
-#include ".tests/dump.h"
-
 i32 main(int argc, char* argv[])
 {
     if (argc != PROGRAM_ARGS) TERMINATE;

@@ -16,7 +16,7 @@ $(TARGET):$(OBJ)
 .c.o:
 	 $(CC) $(CFLAGS) $(OPTIMISE) $<
 
-tests: 
+run_tests: 
 	@echo "RUNNING TESTS"
 	bash runtests.sh
 
