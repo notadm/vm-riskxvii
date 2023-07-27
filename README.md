@@ -1,7 +1,7 @@
 # vm-riskxvii
 USYD_COMP2017(2023) Assignment 2
-
-Pseudo RISC-V assembly stack based virtual machine :].
+<br />
+Pseudo RISC-V assembly stack based virtual machine :]
 
 Compiling: ``` make vm ``` 
 
