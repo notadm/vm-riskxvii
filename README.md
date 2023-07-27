@@ -6,7 +6,7 @@ Pseudo RISC-V assembly stack based virtual machine :]
 Compiling: ``` make vm ``` 
 
 Running tests: ``` make run_tests ```
-
+<br /><br />
 ===========================================================================
 
 				vm-riskxvii
