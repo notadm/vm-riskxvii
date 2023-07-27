@@ -4,13 +4,13 @@
 #include "vm.h"
 
 #define HEAP_MID        4096	
-#define MAX_BANKS 	    128 
-#define HALF_BANKS 	    64
+#define MAX_BANKS 	128 
+#define HALF_BANKS 	64
 #define MIN_ALLOC      	64
-#define BANK_SIZE	    64
+#define BANK_SIZE	64
 #define BASE_OFFSET     6
 #define MAX_ALLOC      	8192	
-#define NO_SPACE  	    0
+#define NO_SPACE  	0
 #define UNALLOCATED   	0
 #define ZERO_MASK       0x0000000000000000
 #define FULL_MASK       0xFFFFFFFFFFFFFFFF 
@@ -113,17 +113,17 @@ u32 encode_size(region block, u64 positional_mask, u32 size)
 u32 alloc(region block, u32 size) 
 {
     u64     positional_mask = ZERO_MASK;
-    u64     kernel_mask 	= ZERO_MASK;
+    u64     kernel_mask	    = ZERO_MASK;
     switch (block) 
     {
         case LOWER:  	
-            positional_mask = positional_encoding(VM.allocation.lower, size);
+            positional_mask     = positional_encoding(VM.allocation.lower, size);
             kernel_mask 	= kernel_encoding(positional_mask, size);
             VM.allocation.lower |= kernel_mask; 
             encode_size(block, positional_mask, size);
             return HEAP_OFFSET + positional_offset(positional_mask);
         case UPPER: 
-            positional_mask = positional_encoding(VM.allocation.upper, size);
+            positional_mask     = positional_encoding(VM.allocation.upper, size);
             kernel_mask 	= kernel_encoding(positional_mask, size);
             encode_size(block, positional_mask, size);
             VM.allocation.upper |= kernel_mask; 
@@ -177,7 +177,7 @@ i32 is_allocated(u32 x)
     region block;
     if (x < HEAP_OFFSET || x > MEMORY_LIMIT) return UNALLOCATED;
     if (x >= (HEAP_OFFSET+HEAP_MID))    { x -= HEAP_MID; 	block = UPPER; }
-    else                                { block = LOWER;                   }
+    else                                { block = LOWER;                       }
     u32     offset          = ((x - HEAP_OFFSET) / BANK_SIZE);
     u64     positional_mask = INITIAL_MASK << offset;
     switch (block) 
@@ -230,8 +230,8 @@ u32 delloc(region block, u32 x)
     }
     switch (block) 
     {
-        case UPPER: 	VM.allocation.upper &= kernel;  		        break;
-        case LOWER: 	VM.allocation.lower &= kernel;			        break;
+        case UPPER: 	VM.allocation.upper &= kernel;  		break;
+        case LOWER: 	VM.allocation.lower &= kernel;			break;
     }
     return 0;
 }
