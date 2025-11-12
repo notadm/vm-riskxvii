@@ -3,18 +3,18 @@
 
 #include "vm.h"
 
-#define HEAP_MID        4096	
-#define MAX_BANKS 	128 
-#define HALF_BANKS 	64
-#define MIN_ALLOC      	64
+#define HEAP_MID	4096	
+#define MAX_BANKS	128 
+#define HALF_BANKS	64
+#define MIN_ALLOC	64
 #define BANK_SIZE	64
-#define BASE_OFFSET     6
-#define MAX_ALLOC      	8192	
-#define NO_SPACE  	0
-#define UNALLOCATED   	0
-#define ZERO_MASK       0x0000000000000000
-#define FULL_MASK       0xFFFFFFFFFFFFFFFF 
-#define INITIAL_MASK    0x0000000000000001
+#define BASE_OFFSET	6
+#define MAX_ALLOC	8192	
+#define NO_SPACE	0
+#define UNALLOCATED	0
+#define ZERO_MASK	0x0000000000000000
+#define FULL_MASK	0xFFFFFFFFFFFFFFFF 
+#define INITIAL_MASK	0x0000000000000001
 
 typedef enum region 
 {
@@ -98,12 +98,8 @@ u32 encode_size(region block, u64 positional_mask, u32 size)
     { 	
 	    switch (block) 
 	    {
-	        case LOWER:  	
-	        VM.allocsize[i].lower |= (allocated&1) ? positional_mask:ZERO_MASK;
-	        break;
-	        case UPPER:  
-	        VM.allocsize[i].upper |= (allocated&1) ? positional_mask:ZERO_MASK;
-	        break;
+	        case LOWER: VM.allocsize[i].lower |= (allocated&1) ? positional_mask:ZERO_MASK; break;
+	        case UPPER: VM.allocsize[i].upper |= (allocated&1) ? positional_mask:ZERO_MASK; break;
     	}
 	    allocated >>= 1;
     }
@@ -117,14 +113,14 @@ u32 alloc(region block, u32 size)
     switch (block) 
     {
         case LOWER:  	
-            positional_mask     = positional_encoding(VM.allocation.lower, size);
-            kernel_mask 	= kernel_encoding(positional_mask, size);
+            positional_mask	 = positional_encoding(VM.allocation.lower, size);
+            kernel_mask		 = kernel_encoding(positional_mask, size);
             VM.allocation.lower |= kernel_mask; 
             encode_size(block, positional_mask, size);
             return HEAP_OFFSET + positional_offset(positional_mask);
         case UPPER: 
-            positional_mask     = positional_encoding(VM.allocation.upper, size);
-            kernel_mask 	= kernel_encoding(positional_mask, size);
+            positional_mask	 = positional_encoding(VM.allocation.upper, size);
+            kernel_mask		 = kernel_encoding(positional_mask, size);
             encode_size(block, positional_mask, size);
             VM.allocation.upper |= kernel_mask; 
             return HEAP_OFFSET + positional_offset(positional_mask) + HEAP_MID;
@@ -195,10 +191,8 @@ u32 decode_size(region block, u64 positional_mask)
     {
 	switch(block) 
 	{
-	    case UPPER: size |= (positional_mask & VM.allocsize[i].upper) ? 1 : 0;
-			        break;
-	    case LOWER: size |= (positional_mask & VM.allocsize[i].lower) ? 1 : 0;
-			        break;
+	    case UPPER: size |= (positional_mask & VM.allocsize[i].upper) ? 1 : 0; break;
+	    case LOWER: size |= (positional_mask & VM.allocsize[i].lower) ? 1 : 0; break;
 	}
 	    size <<= 1;
     }
@@ -224,13 +218,13 @@ u32 delloc(region block, u32 x)
     { 	
         switch (block) 
         {
-            case UPPER: VM.allocsize[i].upper &= ~positional_mask;      break;
-            case LOWER: VM.allocsize[i].lower &= ~positional_mask;      break;
+            case UPPER: VM.allocsize[i].upper &= ~positional_mask;	break;
+            case LOWER: VM.allocsize[i].lower &= ~positional_mask;	break;
         }
     }
     switch (block) 
     {
-        case UPPER: 	VM.allocation.upper &= kernel;  		break;
+        case UPPER: 	VM.allocation.upper &= kernel;			break;
         case LOWER: 	VM.allocation.lower &= kernel;			break;
     }
     return 0;
