@@ -35,23 +35,23 @@ typedef __uint128_t    	        u128;
 #define _U32(x) 	        ( (u32*) x )
 
 #define PROGRAM_ARGS            2
-#define HEAP_BITMAP_DEPTH  	4	
+#define HEAP_BITMAP_DEPTH       4
 #define TOTAL_VIRTUAL_ROUTINES  11
 #define REGISTER_LIMIT        	32
 #define TOTAL_INSTRUCTIONS      1024
-#define HEAP_OFFSET     	0xB700
+#define HEAP_OFFSET        	0xB700
 #define MEMORY_LIMIT        	0xD700
 #define VIRTUAL_ROUTINE_OFFSET  0x0800
 #define BINARY_IMAGE            argv[1]
 #define TERMINATE               exit(0)
-#define INSTRUCTION        	(*_U32(&VM.M[VM.PC]))
-#define NEXT_INSTRUCTION 	VM.PC += 4
+#define INSTRUCTION             (*_U32(&VM.M[VM.PC]))
+#define NEXT_INSTRUCTION        VM.PC += 4
 
-#define ZERO                    0
-#define RA                	1
-#define SP              	2
-#define FP                 	3
-#define X0                 	0
+#define ZERO                  	0
+#define RA                  	1
+#define SP                  	2
+#define FP                  	3
+#define X0                  	0
 #define X1                  	1
 #define X2                    	2
 #define X3                   	3
@@ -64,7 +64,7 @@ typedef __uint128_t    	        u128;
 #define A4                 	14
 #define A5                  	15
 
-#define $zero			VM.R[ZERO]
+#define $zero             	VM.R[ZERO]
 #define $ra             	VM.R[RA]
 #define $sp             	VM.R[SP]
 #define $fp             	VM.R[FP]
@@ -86,9 +86,9 @@ typedef __uint128_t    	        u128;
 #define $rs2               	VM.R[rs2(x)]
 #define $rmalloc                VM.R[28]
 
-#define RD_MASK                	0x00000F80 
-#define RS1_MASK                0x000F8000 
-#define RS2_MASK                0x01FF8000 
+#define RD_MASK			0x00000F80 
+#define RS1_MASK		0x000F8000 
+#define RS2_MASK		0x01FF8000 
 
 // BIT ALIGNMENTS / WIDTHS
 
@@ -128,7 +128,7 @@ typedef __uint128_t    	        u128;
 #define VR_WR_CHAR	     	0x0800
 #define VR_WR_INT	      	0x0804
 #define VR_WR_UINT     		0x0808
-#define VR_HALT  		0x080C
+#define VR_HALT     		0x080C
 #define VR_RD_CHAR     		0x0812
 #define VR_RD_INT     		0x0816
 #define VR_DUMP_PC    		0x0820
@@ -146,14 +146,14 @@ typedef __uint128_t    	        u128;
 			   x, 0, _11_07_OFFSET, _11_07_WIDTH ),                        \
 	    	   x, 5, _31_25_OFFSET, _31_25_WIDTH )            
 #define decode_imm_sb(x)   mpbits( mpbits( mpbits( mpbits(0,                           \
-			   x, 11, _08_07_OFFSET, _08_07_WIDTH ),       	               \
+			   x, 11, _08_07_OFFSET, _08_07_WIDTH ),                       \
 			   x, 1,  _11_08_OFFSET,  _11_08_WIDTH ),                      \
-			   x, 12, _31_30_OFFSET, _31_30_WIDTH ),       	               \
+			   x, 12, _31_30_OFFSET, _31_30_WIDTH ),                       \
 			   x, 5,  _30_25_OFFSET,  _30_25_WIDTH )
-#define decode_imm_uj(x)   mpbits( mpbits( mpbits( mpbits(0,                   	       \
-			   x, 12, _19_12_OFFSET, _19_12_WIDTH ),       	               \
-			   x, 11, _21_20_OFFSET, _21_20_WIDTH ),       	               \
-			   x, 1,  _30_21_OFFSET, _30_21_WIDTH ),       	               \
+#define decode_imm_uj(x)   mpbits( mpbits( mpbits( mpbits(0,                           \
+			   x, 12, _19_12_OFFSET, _19_12_WIDTH ),                       \
+			   x, 11, _21_20_OFFSET, _21_20_WIDTH ),                       \
+			   x, 1,  _30_21_OFFSET, _30_21_WIDTH ),                       \
 			   x, 20, _31_30_OFFSET, _31_30_WIDTH )
 
 
