@@ -20,19 +20,19 @@ typedef unsigned long  	        u64;
 typedef __int128_t    	        i128;
 typedef __uint128_t    	        u128;
 
-#define I08(x) 		        ( (i08) x )
-#define U08(x) 		        ( (u08) x )
-#define I16(x) 		        ( (i16) x )
-#define U16(x) 		        ( (u16) x )
-#define I32(x) 		        ( (i32) x )
-#define U32(x) 		        ( (u32) x )
+#define I08(x) 		        	( (i08) x )
+#define U08(x) 		        	( (u08) x )
+#define I16(x) 		        	( (i16) x )
+#define U16(x) 		        	( (u16) x )
+#define I32(x) 		        	( (i32) x )
+#define U32(x) 		        	( (u32) x )
 
-#define _I08(x) 	        ( (i08*) x )
-#define _U08(x) 	        ( (u08*) x )
-#define _I16(x) 	        ( (i16*) x )
-#define _U16(x) 	        ( (u16*) x )
-#define _I32(x) 	        ( (i32*) x )
-#define _U32(x) 	        ( (u32*) x )
+#define _I08(x) 	        	( (i08*) x )
+#define _U08(x) 	        	( (u08*) x )
+#define _I16(x) 	        	( (i16*) x )
+#define _U16(x) 	        	( (u16*) x )
+#define _I32(x) 	        	( (i32*) x )
+#define _U32(x) 	        	( (u32*) x )
 
 #define PROGRAM_ARGS            2
 #define HEAP_BITMAP_DEPTH       4
@@ -61,7 +61,7 @@ typedef __uint128_t    	        u128;
 #define A1                   	11
 #define A2                   	12
 #define A3                  	13
-#define A4                 	14
+#define A4                  	14
 #define A5                  	15
 
 #define $zero             	VM.R[ZERO]
@@ -83,8 +83,8 @@ typedef __uint128_t    	        u128;
 
 #define $rd               	VM.R[rd(x) ]
 #define $rs1               	VM.R[rs1(x)]
-#define $rs2               	VM.R[rs2(x)]
-#define $rmalloc                VM.R[28]
+#define $rs2			VM.R[rs2(x)]
+#define $rmalloc		VM.R[28]
 
 #define RD_MASK			0x00000F80 
 #define RS1_MASK		0x000F8000 
@@ -198,12 +198,12 @@ State;
 
 State VM;
 		
-u32 rd(u32 x) 		{ return ( (x & RD_MASK  ) >> _11_07_OFFSET );  	}
-u32 rs1(u32 x) 		{ return ( (x & RS1_MASK ) >> _19_15_OFFSET );  	}
-u32 rs2(u32 x) 		{ return ( (x & RS2_MASK ) >> _24_20_OFFSET );  	}
-i32 clr(u32 x) 		{ *_I32(&VM.M[x]) = 0; return 0; 			}
-i32 offset(u32 x) 	{ return (I32($rs1)+decode_imm(x));             	}
-i32 dumpPC() 		{ printf("PC = 0x%08x;\n", VM.PC); return 0;    	}
+u32 rd(u32 x) 		{ return ( (x & RD_MASK  ) >> _11_07_OFFSET );  		}
+u32 rs1(u32 x) 		{ return ( (x & RS1_MASK ) >> _19_15_OFFSET );  		}
+u32 rs2(u32 x) 		{ return ( (x & RS2_MASK ) >> _24_20_OFFSET );  		}
+i32 clr(u32 x) 		{ *_I32(&VM.M[x]) = 0; return 0; 				}
+i32 offset(u32 x) 	{ return (I32($rs1)+decode_imm(x));             		}
+i32 dumpPC() 		{ printf("PC = 0x%08x;\n", VM.PC); return 0;    		}
 i32 dumpRegister(u32 i)	{ printf("R[%d] = 0x%08x;\n",i, VM.R[i]); return 0; 	}
 
 i32 dumpRegisterBanks()
