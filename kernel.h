@@ -196,13 +196,13 @@ i32 execute(u32 x)
 	case M_LHU:   	MemoryKernel    (M_LHU,   	x);               break;
 	case M_BEQ:   	CtrlFlowKernel  (M_BEQ,   	x);               break;
 	case M_BNE:   	CtrlFlowKernel  (M_BNE,   	x);               break;
-	case M_BLT:   	CtrlFlowKernel  (M_BLT,   	x);               break;
-	case M_BLTU:   	CtrlFlowKernel  (M_BLTU,  	x);               break;
-	case M_BGE:   	CtrlFlowKernel  (M_BGE,         x);               break;
-	case M_BGEU:   	CtrlFlowKernel  (M_BGEU,        x);               break;
-	case M_JAL:   	CtrlFlowKernel  (M_JAL,         x);               break;
-	case M_JALR:   	CtrlFlowKernel  (M_JALR,        x);               break;
-	default:        invalid         (               x);               break;
+	case M_BLT:   	CtrlFlowKernel  (M_BLT,		x);               break;
+	case M_BLTU:   	CtrlFlowKernel  (M_BLTU,	x);               break;
+	case M_BGE:   	CtrlFlowKernel  (M_BGE,		x);               break;
+	case M_BGEU:   	CtrlFlowKernel  (M_BGEU,	x);               break;
+	case M_JAL:   	CtrlFlowKernel  (M_JAL,		x);               break;
+	case M_JALR:   	CtrlFlowKernel  (M_JALR,	x);               break;
+	default:        invalid         (       	x);               break;
     }                                                      		       
     return 0;
 }
