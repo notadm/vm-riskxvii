@@ -64,27 +64,27 @@ typedef __uint128_t    	        u128;
 #define A4                  	14
 #define A5                  	15
 
-#define $zero             	VM.R[ZERO]
-#define $ra             	VM.R[RA]
-#define $sp             	VM.R[SP]
-#define $fp             	VM.R[FP]
-#define $x0           		VM.R[X0]
-#define $x1             	VM.R[X1]
-#define $x2             	VM.R[X2]
-#define $x3             	VM.R[X3]
-#define $x4             	VM.R[X4]
-#define $x5             	VM.R[X5]
-#define $a0           		VM.R[A0]
-#define $a1             	VM.R[A1]
-#define $a2             	VM.R[A2]
-#define $a3             	VM.R[A3]
-#define $a4             	VM.R[A4]
-#define $a5             	VM.R[A5]
+#define $zero             		VM.R[ZERO]
+#define $ra             		VM.R[RA]
+#define $sp             		VM.R[SP]
+#define $fp             		VM.R[FP]
+#define $x0           			VM.R[X0]
+#define $x1             		VM.R[X1]
+#define $x2             		VM.R[X2]
+#define $x3             		VM.R[X3]
+#define $x4             		VM.R[X4]
+#define $x5             		VM.R[X5]
+#define $a0           			VM.R[A0]
+#define $a1             		VM.R[A1]
+#define $a2             		VM.R[A2]
+#define $a3             		VM.R[A3]
+#define $a4             		VM.R[A4]
+#define $a5             		VM.R[A5]
 
-#define $rd               	VM.R[rd(x) ]
-#define $rs1               	VM.R[rs1(x)]
-#define $rs2			VM.R[rs2(x)]
-#define $rmalloc		VM.R[28]
+#define $rd               		VM.R[rd(x) ]
+#define $rs1               		VM.R[rs1(x)]
+#define $rs2					VM.R[rs2(x)]
+#define $rmalloc				VM.R[28]
 
 #define RD_MASK			0x00000F80 
 #define RS1_MASK		0x000F8000 
@@ -143,17 +143,17 @@ typedef __uint128_t    	        u128;
 #define decode_imm_u(x)    mpbits( 0,                                                  \
 			   x, _31_12_OFFSET, _31_12_OFFSET,  _31_12_WIDTH )
 #define decode_imm_s(x)    mpbits( mpbits( 0,                                          \
-			   x, 0, _11_07_OFFSET, _11_07_WIDTH ),                        \
+			   x, 0, _11_07_OFFSET, _11_07_WIDTH ),                        		\
 	    	   x, 5, _31_25_OFFSET, _31_25_WIDTH )            
 #define decode_imm_sb(x)   mpbits( mpbits( mpbits( mpbits(0,                           \
-			   x, 11, _08_07_OFFSET, _08_07_WIDTH ),                       \
-			   x, 1,  _11_08_OFFSET,  _11_08_WIDTH ),                      \
-			   x, 12, _31_30_OFFSET, _31_30_WIDTH ),                       \
+			   x, 11, _08_07_OFFSET, _08_07_WIDTH ),                       		\
+			   x, 1,  _11_08_OFFSET,  _11_08_WIDTH ),                      		\
+			   x, 12, _31_30_OFFSET, _31_30_WIDTH ),                       		\
 			   x, 5,  _30_25_OFFSET,  _30_25_WIDTH )
 #define decode_imm_uj(x)   mpbits( mpbits( mpbits( mpbits(0,                           \
-			   x, 12, _19_12_OFFSET, _19_12_WIDTH ),                       \
-			   x, 11, _21_20_OFFSET, _21_20_WIDTH ),                       \
-			   x, 1,  _30_21_OFFSET, _30_21_WIDTH ),                       \
+			   x, 12, _19_12_OFFSET, _19_12_WIDTH ),                       		\
+			   x, 11, _21_20_OFFSET, _21_20_WIDTH ),                       		\
+			   x, 1,  _30_21_OFFSET, _30_21_WIDTH ),                       		\
 			   x, 20, _31_30_OFFSET, _31_30_WIDTH )
 
 
