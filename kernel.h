@@ -22,13 +22,13 @@ i32 outKernel(u32 op, u32 v)
 { 
     switch (op)                                                                 
     {                                                                          
-	case VR_WR_CHAR: 	dumpKernel(VR_WR_CHAR,   v); 		  break;
-	case VR_WR_INT: 	dumpKernel(VR_WR_INT,    v); 		  break;
-	case VR_WR_UINT: 	dumpKernel(VR_WR_UINT,   v); 		  break;
-	case VR_DUMP_WORD: 	dumpKernel(VR_DUMP_WORD, v); 		  break;
-	case VR_DUMP_PC: 	dumpPC();				  break;
-	case VR_DUMP_REG: 	dumpRegisterBanks();			  break;
-	case VR_HALT: 		halt();					  break;
+	case VR_WR_CHAR: 	dumpKernel(VR_WR_CHAR,   v);              break;
+	case VR_WR_INT: 	dumpKernel(VR_WR_INT,    v);              break;
+	case VR_WR_UINT: 	dumpKernel(VR_WR_UINT,   v);              break;
+	case VR_DUMP_WORD: 	dumpKernel(VR_DUMP_WORD, v);              break;
+	case VR_DUMP_PC: 	dumpPC();                                 break;
+	case VR_DUMP_REG: 	dumpRegisterBanks();                      break;
+	case VR_HALT: 		halt();                                   break;
     }
     return 0;
 }
@@ -66,7 +66,7 @@ i32 VRkernel(u32 v)
 	case VR_DUMP_PC: 	outKernel	(VR_DUMP_PC,   v); 	  break;
 	case VR_DUMP_REG: 	outKernel	(VR_DUMP_REG,  v); 	  break;
 	case VR_DUMP_WORD: 	outKernel	(VR_DUMP_WORD, v); 	  break;
-	case VR_RD_CHAR: 	inKernel	(VR_RD_CHAR,   v);  	  break;
+	case VR_RD_CHAR: 	inKernel	(VR_RD_CHAR,   v);	  break;
 	case VR_RD_INT: 	inKernel	(VR_RD_INT,    v);	  break;
 	case VR_MALLOC: 	heapKernel	(VR_MALLOC,    v);	  break; 
 	case VR_FREE: 		heapKernel	(VR_FREE,      v);	  break; 
@@ -84,14 +84,14 @@ i32 ALUKernel(u32 op, u32 x)
 	case M_XOR:   	$rd = I32($rs1) ^  I32($rs2); 		  	  break;
 	case M_OR:   	$rd = I32($rs1) |  I32($rs2); 		  	  break;
 	case M_AND:   	$rd = I32($rs1) &  I32($rs2); 		  	  break;
-	case M_ADDI:  	$rd = I32($rs1) +  I32(decode_imm(x));    	  break;
-	case M_XORI:  	$rd = I32($rs1) ^  I32(decode_imm(x));    	  break;
-	case M_ORI:  	$rd = I32($rs1) |  I32(decode_imm(x));    	  break;
-	case M_ANDI:  	$rd = I32($rs1) &  I32(decode_imm(x));    	  break;
+	case M_ADDI:  	$rd = I32($rs1) +  I32(decode_imm(x));            break;
+	case M_XORI:  	$rd = I32($rs1) ^  I32(decode_imm(x));            break;
+	case M_ORI:  	$rd = I32($rs1) |  I32(decode_imm(x));            break;
+	case M_ANDI:  	$rd = I32($rs1) &  I32(decode_imm(x));            break;
 	case M_SLL:   	$rd = U32($rs1) << U32($rs2); 		  	  break;
 	case M_SRL:   	$rd = U32($rs1) >> U32($rs2);		  	  break;
 	case M_SRA:   	$rd = rotr(I32($rs1),I32($rs2));	  	  break;
-	case M_LUI:   	$rd = decode_imm(x);			  	  break;
+	case M_LUI:   	$rd = decode_imm(x);                              break;
     } 									       
     NEXT_INSTRUCTION;
     return 0;
