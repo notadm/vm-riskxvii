@@ -138,33 +138,33 @@ typedef __uint128_t    	        u128;
 #define VR_FREE       		0x0834
 
 // IMMEDIATE NUMBER DECODER OPS
-#define decode_imm_i(x)    mpbits( 0,                                                  \
+#define decode_imm_i(x)    mpbits( 0,                                          \
 			   x, 0, _31_20_OFFSET,  _31_20_WIDTH )
-#define decode_imm_u(x)    mpbits( 0,                                                  \
+#define decode_imm_u(x)    mpbits( 0,                                          \
 			   x, _31_12_OFFSET, _31_12_OFFSET,  _31_12_WIDTH )
-#define decode_imm_s(x)    mpbits( mpbits( 0,                                          \
-			   x, 0, _11_07_OFFSET, _11_07_WIDTH ),                        		\
+#define decode_imm_s(x)    mpbits( mpbits( 0,                                  \
+			   x, 0, _11_07_OFFSET, _11_07_WIDTH ),                \
 	    	   x, 5, _31_25_OFFSET, _31_25_WIDTH )            
-#define decode_imm_sb(x)   mpbits( mpbits( mpbits( mpbits(0,                           \
-			   x, 11, _08_07_OFFSET, _08_07_WIDTH ),                       		\
-			   x, 1,  _11_08_OFFSET,  _11_08_WIDTH ),                      		\
-			   x, 12, _31_30_OFFSET, _31_30_WIDTH ),                       		\
+#define decode_imm_sb(x)   mpbits( mpbits( mpbits( mpbits(0,                   \
+			   x, 11, _08_07_OFFSET, _08_07_WIDTH ),               \
+			   x, 1,  _11_08_OFFSET,  _11_08_WIDTH ),              \
+			   x, 12, _31_30_OFFSET, _31_30_WIDTH ),               \
 			   x, 5,  _30_25_OFFSET,  _30_25_WIDTH )
-#define decode_imm_uj(x)   mpbits( mpbits( mpbits( mpbits(0,                           \
-			   x, 12, _19_12_OFFSET, _19_12_WIDTH ),                       		\
-			   x, 11, _21_20_OFFSET, _21_20_WIDTH ),                       		\
-			   x, 1,  _30_21_OFFSET, _30_21_WIDTH ),                       		\
+#define decode_imm_uj(x)   mpbits( mpbits( mpbits( mpbits(0,                   \
+			   x, 12, _19_12_OFFSET, _19_12_WIDTH ),               \
+			   x, 11, _21_20_OFFSET, _21_20_WIDTH ),               \
+			   x, 1,  _30_21_OFFSET, _30_21_WIDTH ),               \
 			   x, 20, _31_30_OFFSET, _31_30_WIDTH )
 
 
 // BIT OPS
-u32 signext(u32 x,u32 n)  	              	 { return x|((x&(1<<n))?~((1<<n)-1):0);}
-u32 nbitmask(u32 i,u32 n) 	             	 { return (0xFFFFFFFF>>(32-n)<<i);     }
-u32 rdbits(u32 x,u32 i,u32 n)            	 { return (x>>i)&(0xFFFFFFFF>>(32-n)); }
-u32 rmbits(u32 x,u32 i,u32 n)            	 { return x&(0xFFFFFFFF^nbitmask(i,n));}
-u32 wrbits(u32 x,u32 y,u32 i,u32 n)      	 { return rmbits(x,i,n)|(y<<i);        }
-u32 mpbits(u32 x,u32 y,u32 i,u32 j,u32 n)	 { return wrbits(x,rdbits(y,j,n),i,n); }
-u32 rotr(u32 x,u32 n) 			         { return (x>>n%32)|(x<<(32-n)%32);    }
+u32 signext(u32 x,u32 n)                         { return x|((x&(1<<n))?~((1<<n)-1):0);}
+u32 nbitmask(u32 i,u32 n)                        { return (0xFFFFFFFF>>(32-n)<<i);     }
+u32 rdbits(u32 x,u32 i,u32 n)                    { return (x>>i)&(0xFFFFFFFF>>(32-n)); }
+u32 rmbits(u32 x,u32 i,u32 n)                    { return x&(0xFFFFFFFF^nbitmask(i,n));}
+u32 wrbits(u32 x,u32 y,u32 i,u32 n)              { return rmbits(x,i,n)|(y<<i);        }
+u32 mpbits(u32 x,u32 y,u32 i,u32 j,u32 n)        { return wrbits(x,rdbits(y,j,n),i,n); }
+u32 rotr(u32 x,u32 n)                            { return (x>>n%32)|(x<<(32-n)%32);    }
 
 u32 decode_imm(u32 x)
 { 									       
@@ -188,9 +188,9 @@ bitmap;
 
 typedef struct State 
 {
-    u32 	PC;  		
-    u32 	R[REGISTER_LIMIT];
-    i08 	M[MEMORY_LIMIT];
+    u32         PC;  		
+    u32         R[REGISTER_LIMIT];
+    i08         M[MEMORY_LIMIT];
     bitmap      allocation;
     bitmap      allocsize[HEAP_BITMAP_DEPTH];
 }
@@ -198,13 +198,13 @@ State;
 
 State VM;
 		
-u32 rd(u32 x) 		{ return ( (x & RD_MASK  ) >> _11_07_OFFSET );  		}
-u32 rs1(u32 x) 		{ return ( (x & RS1_MASK ) >> _19_15_OFFSET );  		}
-u32 rs2(u32 x) 		{ return ( (x & RS2_MASK ) >> _24_20_OFFSET );  		}
-i32 clr(u32 x) 		{ *_I32(&VM.M[x]) = 0; return 0; 				}
-i32 offset(u32 x) 	{ return (I32($rs1)+decode_imm(x));             		}
-i32 dumpPC() 		{ printf("PC = 0x%08x;\n", VM.PC); return 0;    		}
-i32 dumpRegister(u32 i)	{ printf("R[%d] = 0x%08x;\n",i, VM.R[i]); return 0; 	}
+u32 rd(u32 x)           { return ( (x & RD_MASK  ) >> _11_07_OFFSET );                  }
+u32 rs1(u32 x)          { return ( (x & RS1_MASK ) >> _19_15_OFFSET );                  }
+u32 rs2(u32 x)          { return ( (x & RS2_MASK ) >> _24_20_OFFSET );                  }
+i32 clr(u32 x)          { *_I32(&VM.M[x]) = 0; return 0;                                }
+i32 offset(u32 x)       { return (I32($rs1)+decode_imm(x));                             }
+i32 dumpPC()            { printf("PC = 0x%08x;\n", VM.PC); return 0;                    }
+i32 dumpRegister(u32 i) { printf("R[%d] = 0x%08x;\n",i, VM.R[i]); return 0;             }
 
 i32 dumpRegisterBanks()
 { 
