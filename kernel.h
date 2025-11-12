@@ -120,14 +120,14 @@ i32 MemoryKernel(u32 op, u32 x)
 
     switch (op)                                                                
     {                                                                          
-	case M_LB:  	VRkernel(v); $rd = signext(*_I08(m), 7);   	  break;
-	case M_LH:  	VRkernel(v); $rd = signext(*_I16(m), 15);  	  break;
-	case M_LW:  	VRkernel(v); $rd = *_I32(m);			  break;
+	case M_LB:  	VRkernel(v); $rd = signext(*_I08(m), 7);          break;
+	case M_LH:  	VRkernel(v); $rd = signext(*_I16(m), 15);         break;
+	case M_LW:  	VRkernel(v); $rd = *_I32(m);                      break;
 	case M_SB:   	memcpy(m, &$rs2, sizeof(u08)); VRkernel(v);       break;
-	case M_SH:   	memcpy(m, &$rs2, sizeof(u16)); VRkernel(v);	  break;
-	case M_SW:   	memcpy(m, &$rs2, sizeof(u32)); VRkernel(v);	  break;
-	case M_LBU:  	$rd = I08(VM.M[v]);				  break;
-	case M_LHU:  	$rd = I16(VM.M[v]);				  break;
+	case M_SH:   	memcpy(m, &$rs2, sizeof(u16)); VRkernel(v);       break;
+	case M_SW:   	memcpy(m, &$rs2, sizeof(u32)); VRkernel(v);       break;
+	case M_LBU:  	$rd = I08(VM.M[v]);                               break;
+	case M_LHU:  	$rd = I16(VM.M[v]);                               break;
     }
     NEXT_INSTRUCTION;
     return 0;
@@ -169,40 +169,40 @@ i32 execute(u32 x)
 {                                                                              
     switch (opmask(x))                                                         
     {                                                                          
-	case M_ADD:   	ALUKernel	(M_ADD,   	x);		  break;
-	case M_SUB:   	ALUKernel	(M_SUB,   	x);		  break;
-	case M_XOR:   	ALUKernel	(M_XOR,   	x);		  break;
-	case M_OR:   	ALUKernel	(M_OR,    	x);		  break;
-	case M_AND:   	ALUKernel	(M_AND,   	x);		  break;
-	case M_ADDI:   	ALUKernel	(M_ADDI,  	x);		  break;
-	case M_XORI:   	ALUKernel	(M_XORI,  	x);		  break;
-	case M_ORI:   	ALUKernel	(M_ORI,   	x);		  break;
-	case M_ANDI:   	ALUKernel	(M_ANDI,  	x);		  break;
-	case M_SLL:   	ALUKernel	(M_SLL,   	x);		  break;
-	case M_SRL:   	ALUKernel	(M_SRL,   	x);		  break;
-	case M_SRA:   	ALUKernel	(M_SRA,   	x);		  break;
-	case M_LUI:   	ALUKernel	(M_LUI,   	x);		  break;
-	case M_SLT:   	LogicKernel	(M_SLT,   	x);		  break;
-	case M_SLTU:   	LogicKernel	(M_SLTU,  	x);		  break;
-	case M_SLTI:   	LogicKernel	(M_SLTI,  	x);		  break;
-	case M_SLTIU:   LogicKernel	(M_SLTIU, 	x);		  break;
-	case M_SB:   	MemoryKernel	(M_SB,    	x);		  break;
-	case M_SH:   	MemoryKernel	(M_SH,    	x);		  break;
-	case M_SW:   	MemoryKernel	(M_SW,    	x);		  break;
-	case M_LB:   	MemoryKernel	(M_LB,    	x);		  break;
-	case M_LH:   	MemoryKernel	(M_LH,    	x);		  break;
-	case M_LW:   	MemoryKernel	(M_LW,    	x); 		  break;
-	case M_LBU:   	MemoryKernel	(M_LBU,   	x); 		  break;
-	case M_LHU:   	MemoryKernel	(M_LHU,   	x); 		  break;
-	case M_BEQ:   	CtrlFlowKernel	(M_BEQ,   	x); 		  break;
-	case M_BNE:   	CtrlFlowKernel	(M_BNE,   	x); 		  break;
-	case M_BLT:   	CtrlFlowKernel	(M_BLT,   	x); 		  break;
-	case M_BLTU:   	CtrlFlowKernel	(M_BLTU,  	x); 		  break;
-	case M_BGE:   	CtrlFlowKernel	(M_BGE,   	x); 		  break;
-	case M_BGEU:   	CtrlFlowKernel	(M_BGEU,  	x); 		  break;
-	case M_JAL:   	CtrlFlowKernel	(M_JAL,   	x); 		  break;
-	case M_JALR:   	CtrlFlowKernel	(M_JALR,  	x); 		  break;
-	default:        invalid		(               x);  		  break;
+	case M_ADD:   	ALUKernel       (M_ADD,   	x);               break;
+	case M_SUB:   	ALUKernel       (M_SUB,   	x);		  break;
+	case M_XOR:   	ALUKernel       (M_XOR,   	x);		  break;
+	case M_OR:   	ALUKernel       (M_OR,    	x);		  break;
+	case M_AND:   	ALUKernel       (M_AND,   	x);		  break;
+	case M_ADDI:   	ALUKernel       (M_ADDI,  	x);		  break;
+	case M_XORI:   	ALUKernel       (M_XORI,  	x);		  break;
+	case M_ORI:   	ALUKernel       (M_ORI,   	x);		  break;
+	case M_ANDI:   	ALUKernel       (M_ANDI,  	x);		  break;
+	case M_SLL:   	ALUKernel       (M_SLL,   	x);		  break;
+	case M_SRL:   	ALUKernel       (M_SRL,   	x);		  break;
+	case M_SRA:   	ALUKernel       (M_SRA,   	x);		  break;
+	case M_LUI:   	ALUKernel       (M_LUI,   	x);		  break;
+	case M_SLT:   	LogicKernel     (M_SLT,   	x);		  break;
+	case M_SLTU:   	LogicKernel     (M_SLTU,  	x);		  break;
+	case M_SLTI:   	LogicKernel     (M_SLTI,  	x);		  break;
+	case M_SLTIU:   LogicKernel     (M_SLTIU, 	x);		  break;
+	case M_SB:   	MemoryKernel    (M_SB,    	x);		  break;
+	case M_SH:   	MemoryKernel    (M_SH,    	x);		  break;
+	case M_SW:   	MemoryKernel    (M_SW,    	x);		  break;
+	case M_LB:   	MemoryKernel    (M_LB,    	x);		  break;
+	case M_LH:   	MemoryKernel    (M_LH,    	x);		  break;
+	case M_LW:   	MemoryKernel    (M_LW,    	x); 		  break;
+	case M_LBU:   	MemoryKernel    (M_LBU,   	x); 		  break;
+	case M_LHU:   	MemoryKernel    (M_LHU,   	x); 		  break;
+	case M_BEQ:   	CtrlFlowKernel  (M_BEQ,   	x); 		  break;
+	case M_BNE:   	CtrlFlowKernel  (M_BNE,   	x); 		  break;
+	case M_BLT:   	CtrlFlowKernel  (M_BLT,   	x); 		  break;
+	case M_BLTU:   	CtrlFlowKernel  (M_BLTU,  	x); 		  break;
+	case M_BGE:   	CtrlFlowKernel  (M_BGE,   	x); 		  break;
+	case M_BGEU:   	CtrlFlowKernel  (M_BGEU,  	x); 		  break;
+	case M_JAL:   	CtrlFlowKernel  (M_JAL,   	x); 		  break;
+	case M_JALR:   	CtrlFlowKernel  (M_JALR,  	x); 		  break;
+	default:        invalid         (               x);  		  break;
     }                                                      		       
     return 0;
 }
