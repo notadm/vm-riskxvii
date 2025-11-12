@@ -20,9 +20,9 @@ typedef unsigned int   		op;
 #define S_TYPE      		0x00000023
 #define SB_TYPE     		0x00000063
 #define U_TYPE      		0x00000037
-#define UJ_TYPE     		0x0000006F
-#define MEM_TYPE            	0x00000003
-#define RET_TYPE 		0x00000067
+#define UJ_TYPE			0x0000006F
+#define MEM_TYPE		0x00000003
+#define RET_TYPE		0x00000067
 
 // R TYPE
 #define M_ADD       		0x00000033 
