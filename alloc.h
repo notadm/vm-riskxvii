@@ -3,18 +3,18 @@
 
 #include "vm.h"
 
-#define HEAP_MID	4096	
-#define MAX_BANKS	128 
-#define HALF_BANKS	64
-#define MIN_ALLOC	64
-#define BANK_SIZE	64
-#define BASE_OFFSET	6
-#define MAX_ALLOC	8192	
-#define NO_SPACE	0
-#define UNALLOCATED	0
-#define ZERO_MASK	0x0000000000000000
-#define FULL_MASK	0xFFFFFFFFFFFFFFFF 
-#define INITIAL_MASK	0x0000000000000001
+#define HEAP_MID        4096	
+#define MAX_BANKS       128 
+#define HALF_BANKS      64
+#define MIN_ALLOC       64
+#define BANK_SIZE       64
+#define BASE_OFFSET     6
+#define MAX_ALLOC       8192	
+#define NO_SPACE        0
+#define UNALLOCATED     0
+#define ZERO_MASK       0x0000000000000000
+#define FULL_MASK       0xFFFFFFFFFFFFFFFF 
+#define INITIAL_MASK    0x0000000000000001
 
 typedef enum region 
 {
@@ -218,14 +218,14 @@ u32 delloc(region block, u32 x)
     { 	
         switch (block) 
         {
-            case UPPER: VM.allocsize[i].upper &= ~positional_mask;	break;
-            case LOWER: VM.allocsize[i].lower &= ~positional_mask;	break;
+            case UPPER: VM.allocsize[i].upper &= ~positional_mask;      break;
+            case LOWER: VM.allocsize[i].lower &= ~positional_mask;      break;
         }
     }
     switch (block) 
     {
-        case UPPER: 	VM.allocation.upper &= kernel;			break;
-        case LOWER: 	VM.allocation.lower &= kernel;			break;
+        case UPPER: 	VM.allocation.upper &= kernel;                  break;
+        case LOWER: 	VM.allocation.lower &= kernel;                  break;
     }
     return 0;
 }
