@@ -159,8 +159,8 @@ i32 CtrlFlowKernel(u32 op, u32 x)
 	case M_BLTU:   	BranchKernel(M_BLTU, x);                          break;
 	case M_BGE:   	BranchKernel(M_BGE,  x);                          break;
 	case M_BGEU:   	BranchKernel(M_BGEU, x);                          break;
-	case M_JAL:   	$rd = VM.PC + 4; VM.PC += decode_imm(x);	  break;
-	case M_JALR:   	$rd = VM.PC + 4; VM.PC = $rs1 + decode_imm(x); 	  break;
+	case M_JAL:   	$rd = VM.PC + 4; VM.PC += decode_imm(x);          break;
+	case M_JALR:   	$rd = VM.PC + 4; VM.PC = $rs1 + decode_imm(x);    break;
     } 									       
     return 0;
 }
@@ -191,18 +191,18 @@ i32 execute(u32 x)
 	case M_SW:   	MemoryKernel    (M_SW,    	x);		  break;
 	case M_LB:   	MemoryKernel    (M_LB,    	x);		  break;
 	case M_LH:   	MemoryKernel    (M_LH,    	x);		  break;
-	case M_LW:   	MemoryKernel    (M_LW,    	x); 		  break;
-	case M_LBU:   	MemoryKernel    (M_LBU,   	x); 		  break;
-	case M_LHU:   	MemoryKernel    (M_LHU,   	x); 		  break;
-	case M_BEQ:   	CtrlFlowKernel  (M_BEQ,   	x); 		  break;
-	case M_BNE:   	CtrlFlowKernel  (M_BNE,   	x); 		  break;
-	case M_BLT:   	CtrlFlowKernel  (M_BLT,   	x); 		  break;
-	case M_BLTU:   	CtrlFlowKernel  (M_BLTU,  	x); 		  break;
-	case M_BGE:   	CtrlFlowKernel  (M_BGE,   	x); 		  break;
-	case M_BGEU:   	CtrlFlowKernel  (M_BGEU,  	x); 		  break;
-	case M_JAL:   	CtrlFlowKernel  (M_JAL,   	x); 		  break;
-	case M_JALR:   	CtrlFlowKernel  (M_JALR,  	x); 		  break;
-	default:        invalid         (               x);  		  break;
+	case M_LW:   	MemoryKernel    (M_LW,    	x);               break;
+	case M_LBU:   	MemoryKernel    (M_LBU,   	x);               break;
+	case M_LHU:   	MemoryKernel    (M_LHU,   	x);               break;
+	case M_BEQ:   	CtrlFlowKernel  (M_BEQ,   	x);               break;
+	case M_BNE:   	CtrlFlowKernel  (M_BNE,   	x);               break;
+	case M_BLT:   	CtrlFlowKernel  (M_BLT,   	x);               break;
+	case M_BLTU:   	CtrlFlowKernel  (M_BLTU,  	x);               break;
+	case M_BGE:   	CtrlFlowKernel  (M_BGE,   	x);               break;
+	case M_BGEU:   	CtrlFlowKernel  (M_BGEU,  	x);               break;
+	case M_JAL:   	CtrlFlowKernel  (M_JAL,   	x);               break;
+	case M_JALR:   	CtrlFlowKernel  (M_JALR,  	x);               break;
+	default:        invalid         (               x);               break;
     }                                                      		       
     return 0;
 }
