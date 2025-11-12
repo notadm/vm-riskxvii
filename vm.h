@@ -39,8 +39,8 @@ typedef __uint128_t    	        u128;
 #define TOTAL_VIRTUAL_ROUTINES  11
 #define REGISTER_LIMIT        	32
 #define TOTAL_INSTRUCTIONS      1024
-#define HEAP_OFFSET        	0xB700
-#define MEMORY_LIMIT        	0xD700
+#define HEAP_OFFSET             0xB700
+#define MEMORY_LIMIT            0xD700
 #define VIRTUAL_ROUTINE_OFFSET  0x0800
 #define BINARY_IMAGE            argv[1]
 #define TERMINATE               exit(0)
@@ -86,9 +86,9 @@ typedef __uint128_t    	        u128;
 #define $rs2					VM.R[rs2(x)]
 #define $rmalloc				VM.R[28]
 
-#define RD_MASK			0x00000F80 
-#define RS1_MASK		0x000F8000 
-#define RS2_MASK		0x01FF8000 
+#define RD_MASK				0x00000F80 
+#define RS1_MASK			0x000F8000 
+#define RS2_MASK			0x01FF8000 
 
 // BIT ALIGNMENTS / WIDTHS
 
