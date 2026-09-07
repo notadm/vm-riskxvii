@@ -1,7 +1,7 @@
 PROGRAM="vm_riskxvii"
-run() 
+run()
 {
-	gcc -Wall -Wvla -Werror -O0 -g -std=c11 $PROGRAM.c -o $PROGRAM
+	gcc -Wall -Wvla -Werror -O0 -std=c11 src/$PROGRAM.c -o $PROGRAM
 
 	touch $PROGRAM.out
 	./$PROGRAM $1 > $PROGRAM.out

@@ -1,30 +1,24 @@
 TARGET 		= vm_riskxvii
 CC 			= gcc
 OPTIMISE   	= -Os -s -nostartfiles -ffunction-sections -fdata-sections -flto
-CFLAGS     	= -c -Wall -Wvla -Werror -O0 -std=c11 
+CFLAGS     	= -Wall -Wvla -Werror -O0 -std=c11
 ASAN_FLAGS 	= -fsanitize=address
-SRC        	= vm_riskxvii.c
-OBJ        	= $(SRC:.c=.o)
+SRC        	= src/vm_riskxvii.c
 
-all:$(TARGET)
+all: $(TARGET)
 
-$(TARGET):$(OBJ)
-	$(CC) -o $@ $(OBJ)
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) $(OPTIMISE) $< -o $@
 
-.SUFFIXES: .c .o
-
-.c.o:
-	 $(CC) $(CFLAGS) $(OPTIMISE) $<
-
-run_tests: 
+run_tests:
 	@echo "RUNNING TESTS"
 	bash runtests.sh
 
 vm:
-	$(CC) $(TARGET).c -o $(TARGET)
+	$(CC) $(SRC) -o $(TARGET)
 
 add:
-	$(CC) $(TARGET).c -o $(TARGET)
+	$(CC) $(SRC) -o $(TARGET)
 	./$(TARGET) tests/add.mi
 
 clean:
